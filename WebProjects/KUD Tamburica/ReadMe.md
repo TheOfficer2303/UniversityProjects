@@ -1,1 +1,3 @@
 Temporary link: https://kudtamburica.000webhostapp.com
+Work in progress...
+This is only a preview. It has poor support for mobile devices.
