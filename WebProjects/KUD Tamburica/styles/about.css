@@ -1,0 +1,26 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+:root {
+    --main-color: #71a54b;
+}
+
+.big-text {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 80px;
+    width: 80%;
+    font-size: 20px;
+}
+
+@media screen and (max-width:768px) {
+    .big-text {
+        grid-template-columns: auto;
+        grid-row-gap: 10px;
+    }
+    
+}

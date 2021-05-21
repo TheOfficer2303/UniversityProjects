@@ -1,0 +1,92 @@
+#images {
+    transition: transform 0.3s ease-in;
+}
+
+.about {
+    display: grid;
+    grid-template-columns: auto auto;
+
+    grid-column-gap: 80px;
+    width: 80%;
+}
+
+.prizes {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: center;
+    width: 95%;
+    grid-column-gap: 50px;
+    
+}
+
+.world {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: -40px;
+    justify-items: center;
+    align-items: center;
+}
+
+.countries {
+    width: 500px;
+    height: 250px;
+}
+
+.countrylist {
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 3px;
+    justify-items: center;
+    align-content: center;
+}
+
+.countrylist li {
+    text-align: center;
+    font-weight: bolder;
+    width: 100px;
+    margin: 2px;
+    background-color: var(--main-color);
+    color: rgb(54, 54, 54);
+}
+
+.news {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    width: 95%;
+    grid-column-gap: 50px;
+}
+
+.news-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(231, 231, 231);
+    border-radius: 10px;
+    min-height: 100%;
+    padding: 10px;
+}
+
+
+.sponsors {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    justify-items: center;
+
+}
+
+.map {
+    height: 300px;
+    width: 60%;
+}
+
+.gogi {
+    margin: 20px 0;
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}

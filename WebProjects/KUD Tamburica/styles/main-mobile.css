@@ -1,0 +1,92 @@
+@media screen and (max-width:768px) {
+    
+    .KUD {
+        order:1;
+        display: inline;
+        text-align: center;
+        margin-left: 30px;
+    } 
+
+    .navigation {
+        justify-content: space-evenly;
+        height: 75px;
+    }
+    
+    .menu {
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        height: 92vh;
+        top: 95px;
+        width: 80%;
+        justify-content: space-around;
+        align-items: center;
+        background-color: rgb(156, 155, 154);
+        transform: translateX(-100%);
+        transition: transform 0.5s ease-in;
+    }
+
+    #desno {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .menu-item {
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+        width: 100%;
+        height: 100%;
+        
+    }
+
+    .menu-item.link {
+        border: none;
+        border-bottom: 2px solid black;
+    }
+    .menu img{
+        display: none;
+    }
+
+    .burger {
+        /* background-color: rgb(194, 193, 193); */
+        /* border: 1px solid black; */
+        margin-left: 1em;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .burger div {
+        display: block;
+    }
+
+    .about {
+        grid-template-columns: auto;
+        grid-column-gap: 40px;
+    }
+
+    .prizes {
+        grid-template-columns: auto auto;
+    }
+
+    .world {
+        grid-template-columns: auto;
+    }
+
+    .countries {
+        width: 50vh;
+        /* height: 250px; */
+    }
+
+    .countrylist {
+        grid-template-columns: auto auto auto;
+    }
+
+    .sponsors {
+        grid-template-columns: auto auto;
+    }
+
+}
