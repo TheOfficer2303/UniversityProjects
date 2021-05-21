@@ -1,1 +1,1 @@
-
+Ovaj je program simulacija dinamičkog raspoređivanja spremnika. Pritiskom na tipku R, kreira se zahtjev od n mjesta (n je slučajno odabran) te se zahtjev sprema u prvo najmanje slobodno mjesto. Tipka F oslobađa zahtjev koji korisnik želi, a unosom tipke D, spremnik se defragmentira.
