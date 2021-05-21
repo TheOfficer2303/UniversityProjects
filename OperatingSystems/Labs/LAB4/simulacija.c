@@ -87,6 +87,33 @@ int hasRequest(int memory, char request) {
 
 }
 
+void defragment(int memory) {
+   int requestsOnly[memory];
+   int j = 0;
+   for (size_t i = 0; i < memory; i++) {
+      if (storage[i] != 0x2D) {
+         requestsOnly[j] = storage[i];
+         j += 1;
+      }
+   }
+
+
+   for (size_t i = 0; i < j; i++) {
+      storage[i] = requestsOnly[i];
+   }
+
+   for (size_t i = j; i < memory; i++) {
+      storage[i] = 0x2D;
+   }
+}
+
+void print(int memory) {
+   for (size_t i = 0; i < memory; i++){
+      printf("%c", storage[i]);
+   }
+   printf("\n");
+}
+
 int main(int argc, char const* argv[]) {
    srand(time(NULL));
    int memory = atoi(argv[1]);
@@ -103,13 +130,15 @@ int main(int argc, char const* argv[]) {
    int lastFilled = 0;
    char key;
 
+   printf("Key R to request, F to free space, D to defragment storage!\n");
+
    while (1) {
       printf("Input key: ");
       scanf(" %c", &key);
       int randAlloc = (rand() % 6) + 1;
 
       switch (key) {
-      case 0x5A:
+      case 0x52:
 
          if (hasEnoughMemory(memory, randAlloc)) {
             lastFilled = findMinFreeSpace(memory, randAlloc);
@@ -126,14 +155,10 @@ int main(int argc, char const* argv[]) {
          printf("New request %c for %d memory space.\n", request, randAlloc);
          request += 1;
 
+         print(memory);
 
-
-         for (size_t i = 0; i < memory; i++){
-            printf("%c", storage[i]);
-         }
-         printf("\n");
          break;
-      case 0x4F:
+      case 0x46:
          printf("Which request do you want to free?\n");
          char choice;
          scanf("%s", &choice);
@@ -148,18 +173,21 @@ int main(int argc, char const* argv[]) {
             request += 1;
          }
 
-         printf("%c\n", request);
-
          for (size_t i = 0; i < memory; i++) {
             if (storage[i] == choice) {
                storage[i] = 0x2D;
             }
          }
 
-         for (size_t i = 0; i < memory; i++){
-            printf("%c", storage[i]);
-         }
-         printf("\n");
+         print(memory);
+
+         break;
+      case 0x44:
+         printf("Starting defragmentation!\n");
+
+         defragment(memory);
+         print(memory);
+
          break;
       default:
          printf("Unknown input. Try again!\n");
