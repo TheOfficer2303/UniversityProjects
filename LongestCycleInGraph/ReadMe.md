@@ -4,12 +4,19 @@ It takes adjacency matrix and prints the length of the longest cycle in that gra
 Input:
 8
 0 1 0 1 1 0 0 1
+
 1 0 1 0 0 0 0 0
+
 0 1 0 1 0 0 0 0
+
 1 0 1 0 0 0 0 0
+
 1 0 0 0 0 1 0 0
+
 0 0 0 0 1 0 1 0
+
 0 0 0 0 0 1 0 1
+
 1 0 0 0 0 0 1 0
 
 Output:
