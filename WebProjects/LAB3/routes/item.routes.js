@@ -62,6 +62,7 @@ router.post('/:id([0-9]|[1-9][0-9])/editsupplier/:sid([0-9]|[1-9][0-9])', async 
     console.log(req.body);
 
     let errors = [];
+    let errDB = "";
     let itemID = req.params.id;
     let supplierID = req.params.sid;
 
@@ -118,12 +119,13 @@ router.post('/:id([0-9]|[1-9][0-9])/editsupplier/:sid([0-9]|[1-9][0-9])', async 
         errors.push(error);
     }
 
-    if (errors.length === 0) {
+     if (errors.length === 0) {
         try {
             await Promise.all([
-                 db.query(`UPDATE supplier SET 'name' = ${name}, 
-                 'country' = ${country}, 'county' = ${county}, 
-                 'email' = ${email}, 'suppliersince' = ${years}`)
+                 db.query(`UPDATE suppliers SET name = '${name}', 
+                 country = '${country}', county = '${county}', 
+                 email = '${email}', suppliersince = '${years}'
+                 WHERE id = ${supplierID}`)
              ])
          } catch (err) {
              errDB = err.message;
@@ -135,7 +137,7 @@ router.post('/:id([0-9]|[1-9][0-9])/editsupplier/:sid([0-9]|[1-9][0-9])', async 
         linkActive: "order",
         errors: errors.length === 0 ? 'none' : errors,
         itemID: itemID,
-        errDB: errDB
+        errDB: errDB === "" ? 'no error' : errDB
     })
 
 })
