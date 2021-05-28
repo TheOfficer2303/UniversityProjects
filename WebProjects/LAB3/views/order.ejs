@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="./images/flower-icon.png"/>
+    <link rel="stylesheet" type="text/css" href="./vendor/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+</head>
+
+<body class="content">
+
+<%- include(`partials/header`); %>
+
+<main class="main">
+
+    <!-- INSERT CODE HERE -->
+    <% for (let category of categories) { %>
+    <div class="category">
+        <section class="section secondary-color-bg">
+            <div class="centered-container">
+                <h1 class="decorated-title font-secondary main-color">
+                    <span class="main-color-emphasized"><%= category.name %></span>
+                    Inventory</h1>
+                <div class="separator"></div>
+            </div>
+
+           <% if (category.products.length === 0) { %>
+            <div class="centered-container">
+                <span class="photo-box-title font-secondary main-color">No items in this category</span>
+            </div>
+            
+            <% } else { %>
+            <div class="gallery">
+               <% for (item of category.products) { %>
+                <div class="product" >
+                    <div class="photo-box" >
+                        <img class="photo-box-image" src="<%= item.imageurl %>"></img>
+                        <a href="/item/<%= item.id %>" class="link">
+                            <div class="photo-box-title font-secondary main-color link"><%= item.name%></div>
+                        </a>
+                       
+                    </div>
+                </div>
+              <% } %>
+            </div>
+            <% } %>
+        </section>
+        
+    </div>
+    <% } %>
+
+    
+    
+    <!-- <div class="gallery">
+            <div class="photo-box" data-id=" ... ">
+                <img class="photo-box-image" src=" ... "></img>
+                <div class="photo-box-title font-secondary main-color-emphasized">
+                    <a class="link" href=" ... "> ... </a>
+                </div>
+            </div>
+    </div> -->
+
+</main>
+
+<%- include(`partials/footer`); %>
+
+</body>
+
+</html>
