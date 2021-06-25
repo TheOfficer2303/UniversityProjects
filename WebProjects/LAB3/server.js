@@ -16,5 +16,5 @@ app.use(express.urlencoded({ extended: true}));
 app.use('/', homeRouter)
 app.use('/order', orderRouter)
 app.use('/item', itemRouter)
-
-app.listen(80);
+ 
+module.exports = app;
