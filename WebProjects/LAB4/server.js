@@ -60,3 +60,4 @@ app.use('/card-payment', cardPaymentRoute);
 //pokretanje poslužitelja na portu 3000
 app.listen(3000);
 
+module.exports = app;
