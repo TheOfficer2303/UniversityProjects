@@ -8,11 +8,15 @@ elif [ ! $# -eq 1 ]
 fi
 
 groups="$(ls $1 | grep -E -o "[[:digit:]]{6}" | uniq)"
+echo $groups
 
 for group in $groups; do
     year=${group:0:4}
-    month=${group:3:2}
+    month=${group:4:2}
     echo "$month-$year :"
     echo "------------"
-    ls $1 | grep $group | sort -k1.7,1.13
+    ls $1 | grep $group | sort
+    count=`ls $1 | grep $group | wc -l | cut -d' ' -f8`
+    echo "--- Ukupno: $count slika ---"
+    echo
 done
