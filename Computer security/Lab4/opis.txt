@@ -1,0 +1,40 @@
+U Wiresharku možemo vidjeti da se PC1 spaja na server DMZ pomoću telnet i SSH protokola
+
+-------
+1. Računala iz lokalne mreže (LAN) imaju	neograničeni pristup poslužiteljima u DMZ i Internetu
+
+Svaki paket koji dolazi sa sučelja eth1 (LAN), a odlazi na sučelja eth0 ili eth2 se propušta (dopušta).
+
+-----
+
+2. Pristup iz vanjske mreže u lokalnu LAN mrežu je zabranjen
+Pošto smo na početku skripte uveli pravilo $IPT -P FORWARD DROP, a nigdje u skripti nije dodano pravilo koje će promijeniti pristup vanjske mreže u lokalnu, nije potrebno dodavati nova pravila
+ 
+------
+
+3. Iz vanjske mreže (Interneta) dozvoljen je pristup poslužitelju server u DMZ	
+korištenjem	protokola	SSH	(tcp	port	22)	i	DNS	(udp	i	tcp	port	53)
+
+Dodano je pravilo koje će propustiti pakete koje dolaze sa sučelja eth0, a odlaze na destinaciju s IP adresom servera (sa sučeljem eth2) i to eksplicitno na tcp port 22 ili tcp/udp port 53
+
+------
+
+4. S poslužitelja server je dozvoljen pristup DNS poslužiteljima u Internetu (UDP i TCP	port 53)
+Pravila koja su dodana govore da promet koji će biti dopušten mora doći s izvorišne IP adrese servera (203.0.113.10), s izvorišnog sučelja eth0 te je usmjeren prema odredišnom sučelju Firewalla eth2.
+Navedena su 2 pravila kako bismo obuhvatili i UDP i TCP protokole sa zadanim portom (port je namijenjen za DNS servere)
+
+-----
+
+5. S poslužitelja server je dozvoljen pristup poslužitelju host (u LAN)	korištenjem protokola SSH
+Dodano je pravilo koje dozvoljava promet iz DMZ (eth2) sa IP adrese 203.0.113.10 i koji je usmjeren prema lokalnoj mreži (eth1) na IP adresu 203.0.113.10, a koristi TCP protokol i port 22
+
+-------
+
+6. SSH pristup vatrozidu firewall je dozvoljen samo s računala admin (LAN)
+Dodana su 2 pravila koja:
+ - omogućuje ulaz prometa (INPUT) u računalo IP adrese 10.0.0.10, a ide iz porta 22 s protokolom TCP
+ - omogućuje izlaz prometa (OUTPUT) s računala s IP adresom 10.0.0.10, a ide u port 22 koristeći protokol TCP
+
+Anti spoofing pravilom ograničavamo pristup DMZ i LAN mreži preko Interneta na način da ako paket dođe s eth0 sučelja Firewalla sa source adresom koja je ista kao IP adresa servera ili računala admin (računalo iz LAN mreže), taj paket odbacujemo.
+Nemoguće je da paket dođe s eth0 sučelja, a da ima jednu od IP adresa za koje Firewall zna da dolaze s drugih sučelja (eth1 ili eth2)
+
