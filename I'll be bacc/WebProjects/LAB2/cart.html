@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Flower power!</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="images/flower-icon.png" />
+    <link rel="stylesheet" type="text/css" href="vendor/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header header-fixed primary-color-bg">
+        <nav class="navigation container">
+            <div class="menu">
+                <a href="index.html" class="link menu-item">Home</a>
+                <a href="order.html" class="link menu-item link-active">Order</a>
+                <a href="index.html" class="link">
+                    <img class="scaled-image scaled-image-fixed" src="images/logo.svg" alt="Company logo">
+                </a>
+                <a href="#" class="link menu-item">Contact us</a>
+                <a href="cart.html" class="link menu-item cart-menu cart-menu-active link-active">
+                    <img src="images/cart-icon.svg" alt="Cart icon">
+                    <div class="cart-menu-status">
+                        <div id="cart-items">0</div>
+                        <div>items</div>
+                    </div>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <section id="category-template">
+        <section class="section secondary-color-bg">
+            <div class="centered-container">
+                <h1 class="decorated-title font-secondary main-color">
+                    <span class="main-color-emphasized">Shopping cart</span>
+                    items</h1>
+                <div class="separator"></div>
+            </div>
+            <div class="gallery">
+            </div>
+        </section>
+    </section>
+
+    <section id="cart-template-header">
+        <div class="cart-header">
+            <button class="cart-header-title" id="product-button" >Product</button>
+            <button class="cart-header-title" id="price-button">Price</button>
+            <button class="cart-header-title" id="quantity-button">Quantity</button>
+        </div>
+    </section>
+
+    <template id="cart-template-item">
+        <div class="cart-item" data-id="">
+            <div class="cart-item-title">Tulips</div>
+            <div class="cart-item-price">15 kn</div>
+            <input type="number" class="cart-item-quantity"></input>
+        </div>
+    </template>
+    <section class="upper-cart">
+        <section class="cart-section">
+
+        </section>
+    </section>
+    
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="menu menu-distributed">
+                <div class="infobox infobox-marginless infobox-copyright">
+                    <h4 class="infobox-title infobox-title-secondary-color main-color-emphasized">
+                        Copy this as much as you like
+                    </h4>
+                </div>
+                <div class="infobox infobox-marginless infobox-flower">
+                    <h4 class="infobox-title infobox-title-secondary-color main-color-emphasized">
+                        Flower power
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </footer>
+   
+
+    <script src="scripts/main.js"></script>
+    <script>
+        let array = [];
+        let addItems = async function () {
+            let length = localStorage.length;
+            let cartSection = document.querySelector(".cart-section");
+
+            let cartTemplateItem = document.querySelector('#cart-template-item');
+
+            for (let index = 0; index < length; index++) {
+                let item;
+
+                if (localStorage.key(index) !== "cart-items") {
+                    item = JSON.parse(localStorage.getItem(localStorage.key(index)));
+                } else {
+                    continue;
+                }
+                 
+                let response = await fetch("https://web1lab2.azurewebsites.net/products/" + item.id)
+                let data = await response.json();
+
+                let cartItem = cartTemplateItem.content.cloneNode(true);
+                let cartItemDiv = cartItem.querySelector(".cart-item");
+                cartItemDiv.setAttribute("data-id", item.id);
+
+                let itemTitle = cartItem.querySelector('.cart-item-title')
+                itemTitle.textContent = data['name'];
+
+                
+
+                let itemPrice = cartItem.querySelector('.cart-item-price')
+                itemPrice.textContent = data['price'] + " kn";
+
+                let itemNumber = cartItem.querySelector(".cart-item-quantity");
+                itemNumber.value = item.num
+                itemNumber.readOnly = true;
+                array.push(data)
+
+                cartSection.appendChild(cartItem);
+            }
+        }
+       
+        addItems()
+
+        let sort = function (buttonType) {
+            
+            let cartSection = document.querySelector(".cart-section");
+            cartSection.remove();
+            cartSection = document.createElement('section');
+            cartSection.className="cart-section";
+            upper = document.querySelector(".upper-cart");
+            upper.appendChild(cartSection);
+
+            addSorted(buttonType)
+        }
+
+        let addSorted = function (buttonType) {
+          
+            switch (buttonType) {
+                case "product-button" :
+                    array.sort((a, b) => (a.name < b.name ? -1 : 1));
+                    break;
+                case "price-button" : 
+                    array.sort((a, b) => (a.price < b.price ? -1 : 1));
+                    break
+            }
+
+           
+            let length = localStorage.length;
+            let cartSection = document.querySelector(".cart-section");
+
+            let cartTemplateItem = document.querySelector('#cart-template-item');
+
+            for (let index = 0; index < array.length; index++) {
+
+                let cartItem = cartTemplateItem.content.cloneNode(true);
+            
+                let cartItemDiv = cartItem.querySelector(".cart-item");
+                cartItemDiv.setAttribute("data-id", array[index].id);
+
+                let itemTitle = cartItem.querySelector('.cart-item-title')
+                itemTitle.textContent = array[index]['name'];
+
+                let itemPrice = cartItem.querySelector('.cart-item-price')
+                itemPrice.textContent = array[index]['price'] + " kn";
+
+                let itemNumber = cartItem.querySelector(".cart-item-quantity");
+           
+                item = JSON.parse(localStorage.getItem("elem" + array[index].id))
+        
+                itemNumber.value = item.num
+                itemNumber.readOnly = true;
+
+                cartSection.appendChild(cartItem);
+            }
+
+           
+        }
+
+        let productButton = document.querySelector("#product-button");
+        console.log(productButton.id)
+        let priceButton = document.querySelector("#price-button");
+        console.log(priceButton.id)
+    
+        productButton.addEventListener("click", function () {
+            sort(productButton.id)
+        } );
+
+        priceButton.addEventListener("click", function () {
+            sort(priceButton.id)
+        } );
+    </script>
+
+</body>
+</html>

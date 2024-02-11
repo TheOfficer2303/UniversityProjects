@@ -1,0 +1,3 @@
+Ovaj zadatak je zahtijevao samo podešavanje filtera u QGIS-u te dodavanje novog Vectora.
+Dodan je layer Places te su filtrirana mjesta koja imaju više od 30000 stanovnika. 
+Nakon toga na Vector - Geometry Tools - Voronoi polygons su dodani Voronoi poligoni te je to postao novi layer. Njega je bilo potrebno stilizirati (smanjiti opacity) kako bi se karta Hrvatske vidjela ispod.

@@ -1,0 +1,280 @@
+1.zd
+
+database: projekt3
+collection: videogames
+
+document:
+{ 
+  "_id" : ObjectId("63bcabb99a4c61f221f65d55"), 
+  "productId" : "B000068VBH", 
+  "title" : "Barbie as Rapunzel", 
+  "price" : "unknown", 
+  "userId" : "APHYWHDX9FRPY", 
+  "profileName" : "kim1245", 
+  "helpfulness" : "1", 
+  "score" : 5, 
+  "time" : ISODate("2003-06-15T02:00:00Z"), 
+  "summary" : "creativity for everyone", 
+  "text" : "did you know this software has been arwarded for parents choice arward 2002 i try this software and it's1# creativity for girls to imspire art in time." 
+}
+
+broj zapisa: 67058
+prosječna veličina: 782 bajta
+ukupna veličina: 30670848.0 bajta
+
+db.getCollection("videogames").stats()
+
+
+2. zad
+var scores = new Set()
+db.getCollection("videogames").find().forEach(
+    function (doc) {
+        scores.add(doc.score)
+    }
+)
+print(scores)
+
+3. zad
+var notPriced = 0;
+db.getCollection("videogames").find().forEach(
+    function (doc) {
+        if (doc.price == "unknown") {
+            notPriced += 1;
+        }
+    }
+)
+print("Broj proizvoda bez definirane cijene: ", notPriced)
+
+
+4. zad
+db.getCollection("videogames").find({
+    score: 1
+}, {price: 1, title:1, time: 1, _id: 0}).sort({time: -1, _id: 1}).skip(10).limit(10)
+vrijeme 0.049s
+
+5.zad
+function map() {emit (this.productId, this.price)}
+
+function reduce(productId, prices) {
+    var set = new Set();
+    
+    prices.forEach((price) => {
+        set.add(price)
+    })
+    
+    return set.size
+}
+
+var toDelete = []
+db.getCollection("videogames")
+    .mapReduce(map, reduce, {out: { inline: 1 }})
+    .results
+    .forEach((result) => {
+    if (result.value > 1) {
+        toDelete.push(result._id)
+    }
+    })
+db.videogames.deleteMany( { productId : { $in: toDelete } } );
+
+
+
+vrijeme 0.839s
+
+
+6. zd
+function map() {emit (this.productId, {
+    userId: this.userId,
+    profileName: this.profileName,
+    helpfulness: this.helpfulness,
+    score: this.score,
+    time: this.time,
+    summary: this.summary,
+    text: this.text
+})}
+
+function reduce(productId, reviews) {
+    var rv = {rws: []}
+    
+    reviews.forEach((review) => {
+        rv.rws.push(review)
+    })
+    
+    return rv.rws;
+}
+
+db.getCollection("videogames").mapReduce(map, reduce, {out:"videogamesnew"})
+
+
+//dodavanje pricea i titlea
+db.getCollection("videogames").aggregate( [
+      {
+          $group: {"_id": {productId: "$productId", title: "$title", price: "$price"}}
+      },
+      {
+          $project: {
+              _id: 0,
+             productId: "$_id.productId",
+             title: "$_id.title",
+             price: "$_id.price"
+          }
+      }
+]).forEach((result) => {
+    db.getCollection("videogamesnew").updateOne({
+        _id: result.productId
+    }, {
+        $set: {
+            title: result.title,
+            price: result.price
+        }
+    })
+})
+
+db.getCollection("videogamesnew").updateMany({
+        price: {$eq: "unknown"}
+    },
+    {
+        $unset: {price: ""}
+    }
+)
+
+
+vrijeme 1.918s
+db.videogamesnew.updateMany( {}, { $rename: { "value": "reviews" } } )
+
+7. zad
+db.getCollection("videogamesnew").aggregate([
+   {
+      $project: {
+         _id: 1,
+         numberOfReviews: { $size: "$reviews" }
+      }
+   }, {
+       $sort: {
+           numberOfReviews: -1
+       }
+   }, {
+       $limit: 10
+   }
+])
+0.020s
+
+db.getCollection("videogamesnew").aggregate([
+   {
+      $project: {
+         _id: 1,
+         numberOfReviews: { $size: "$reviews" }
+      }
+   }, {
+       $sort: {
+           numberOfReviews: 1
+       }
+   }, {
+       $limit: 10
+   }
+])
+
+
+8. zad
+//dodaj bez unutarnjeg objekta
+db.getCollection("videogamesnew").aggregate([
+   {
+      $project: {
+         _id: 1,
+         numberOfReviews: { $size: "$reviews" },
+         avgReviewScore: {
+             $round: [{ $avg: "$reviews.score" }, 1]
+         } 
+      }
+   }
+]).forEach((result) => {
+    db.getCollection("videogamesnew").updateOne({
+        _id: result._id
+    }, {
+        $set: {
+            reviewStats: {
+                avgReviewScore: result.avgReviewScore,
+                reviewsCount: result.numberOfReviews
+            }
+        }
+    })
+})
+
+
+//2. dio
+db.getCollection("videogamesnew").find({}, {_id: 1, reviews: 1, reviewStats: 1})
+.forEach((result) => {
+    reviewScoreDistrib = {
+        '1': 0,
+        '2': 0,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+    }
+    result.reviews.forEach((review) => {
+        reviewScoreDistrib[String(review.score)] += 1
+    })
+    db.getCollection("videogamesnew").updateOne({
+        _id: result._id
+    }, {
+        $set: {
+            reviewStats: {
+                avgReviewScore: result.reviewStats.avgReviewScore,
+                reviewsCount: result.reviewStats.reviewsCount,
+                reviewScoreDistrib: reviewScoreDistrib
+            } 
+        }
+    })
+})
+
+
+9zad
+vrijeme 2.209
+A3V6Z4RCDGRC44 max
+AJQT4IPUBZ3E1 min
+
+userReviewsCount = {};
+
+
+db.getCollection("videogamesnew").find({})
+.forEach((result) => {
+    result.reviews.forEach((review) => {
+        if (!userReviewsCount[review.userId]) {
+            userReviewsCount[review.userId] = 1;
+        } else {
+            userReviewsCount[review.userId] += 1;
+        }
+    })
+})
+delete userReviewsCount["unknown"]
+
+Object.keys(userReviewsCount).reduce((a, b) => userReviewsCount[a] > userReviewsCount[b] ? a : b)
+Object.keys(userReviewsCount).reduce((a, b) => userReviewsCount[a] < userReviewsCount[b] ? a : b)
+
+//dohvat
+db.getCollection("videogamesnew").find({
+    'reviews.userId': { $eq: "A3V6Z4RCDGRC44" } 
+}).explain()
+
+db.getCollection("videogamesnew").createIndex({"reviews.userId": 1})
+
+db.getCollection("videogamesnew").find({
+    'reviews.userId': { $eq: "A3V6Z4RCDGRC44" } 
+}).explain()
+
+
+
+bez indeksa 0.248s
+s indeksom 0.094s
+
+10.
+vrijeme izvođenja bez indeksa: 1.128s 
+vrijeme izvođenja s indeksom: 0.889s 
+db.getCollection("videogamesnew").find({
+    $text: {
+        $search: "bought"
+    }
+})
+
+11.
+0.027s
+

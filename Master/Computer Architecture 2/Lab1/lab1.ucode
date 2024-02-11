@@ -1,0 +1,55 @@
+// ====================== PRIBAVI =======================
+fetch0: a_sel=7, b_sel=7, alu_sel=OR, mar_sel=LOAD; // MAR <- PC
+fetch1: ir1_sel=LOAD, read, if wait then goto fetch1 endif; // IR_high <- MEM(MAR)
+fetch2: a_sel=7, c_in, alu_sel=ADDA, r7_write; // PC <- PC+1
+fetch3: a_sel=7, b_sel=7, alu_sel=OR, mar_sel=LOAD; // MAR <- PC
+fetch4: ir0_sel=LOAD, read, if wait then goto fetch4 endif; // IR_low <- MEM(MAR)
+fetch5: a_sel=7, c_in, alu_sel=ADDA, r7_write, goto opcode[IR_OPCODE]; // PC <- PC+1
+
+// ============= DIO OPERACIJSKIH KODOVA =============
+// 0) NOP
+opcode[0]: goto fetch0;
+
+// 1) LOAD_IMMEDIATE (ri <- ir_const8)
+opcode[1]: result_sel=IR_CONST8, ri_sel, goto fetch0;
+
+// 2) ADD (ri <- rj + rk)
+opcode[2]: ri_sel, rj_sel, rk_sel, alu_sel=ADD, if m_7 then goto opcode2.1 else goto opcode2.2 endif;
+
+// 3) HALT
+opcode[3]: goto opcode[3];
+
+// ====== PRIPREMA ZA LAB1 ======
+// 4) MOVE (ri <- rj)
+opcode[4]: ri_sel, rj_sel, alu_sel=ADDA, goto fetch0;
+
+// 5) LOAD ri, addr
+opcode[5]: r4_write, result_sel=IR_CONST8, goto opcode5.1;
+
+// 6) STORE rj, (rk)
+opcode[6]: rj_sel, alu_sel=ADDA, mdr_sel=LOAD_ALU, goto opcode6.1;
+
+// 7) JMP addr
+opcode[7]: r7_write, result_sel=IR_CONST8, goto fetch0;
+
+// 8) JZ rj, rk
+opcode[8]: rj_sel, alu_sel=SUBA, if c_out then goto fetch0 else goto opcode8.1 endif;
+
+// ======== DIO EKSTENZIJE ============
+
+opcode2.1: a_sel=4, b_sel=4, alu_sel=XOR, r4_write;
+	a_sel=4, c_in, alu_sel=ADDA, r6_write, goto fetch0;
+
+opcode2.2: a_sel=4, b_sel=4, alu_sel=XOR, r4_write;
+	a_sel=4, alu_sel=ADDA, r6_write, goto fetch0;
+
+opcode5.1: a_sel=4, alu_sel=ADDA, mar_sel=LOAD, goto opcode5.2;
+opcode5.2: read, if wait then goto opcode5.2 else goto opcode5.3 endif;
+opcode5.3: mdr_sel=LOAD_MEM, ri_sel, result_sel=MDR, goto fetch0;
+
+opcode6.1: a_sel=4, b_sel=4, alu_sel=XOR, r4_write, goto opcode6.2;
+opcode6.2: rk_sel, a_sel=4, alu_sel=ADD, mar_sel=LOAD, goto opcode6.3;
+opcode6.3: write, if wait then goto opcode6.2 else goto fetch0 endif;
+
+opcode8.1: a_sel=4, b_sel=4, alu_sel=XOR, r4_write, goto opcode8.2;
+opcode8.2: rk_sel, a_sel=4, alu_sel=ADD, r7_write goto fetch0;

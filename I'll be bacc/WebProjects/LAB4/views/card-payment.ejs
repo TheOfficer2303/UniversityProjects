@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="./images/flower-icon.png"/>
+    <link rel="stylesheet" type="text/css" href="./vendor/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <script src="./scripts/main.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+</head>
+
+
+<body class="content">
+
+<%- include(`partials/header`); %>
+<main class="main">
+
+    <section class="section secondary-color-bg">
+        <div class="container">
+            <div class="centered-container">
+                <h1 class="decorated-title font-secondary main-color">
+                    <span class="main-color-emphasized">Card </span> information
+                </h1>
+                <form method="POST" class="form gutter">
+                    <fieldset class="form-fieldset">
+                        <legend class="form-legend">Card details</legend>
+
+                        <div class="form-group">
+                            <label class="form-label" for="cardholder-name">Cardholder Name:</label>
+                            <input class="form-input form-component" type="text" maxlength="40" minlength="10" value="<%= cardHolderName %>"
+                                   id="cardholder-name" name="cardholdername" required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="card-number">Card number:</label>
+                            <input class="form-input form-component" type="text" maxlength="40" minlength="5" value="<%= cardNumber %>"
+                                   id="card-number" name="cardnumber" required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="card-ccv">Card CCV:</label>
+                            <input class="form-input form-component" type="text" maxlength="40" minlength="5" value="<%= cardCCV %>"
+                                   id="card-ccv" name="cardccv" required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="card-expiration">Card expiration:</label>
+                            <input class="form-input form-component" type="month" id="card-expiration" value="<%= cardExpiration %>"
+                                   name="cardexpiration" required
+                            > 
+                        </div>
+
+                        <input class="btn" type="submit" formaction="/card-payment/save" value="Save and return to cart">
+                        <input class="btn" type="submit" formaction="/card-payment/reset" value="Reset">
+                        <input class="btn push-right" type="submit" formaction="/card-payment/order" value="Order now!">
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<%- include(`partials/footer`); %>
+
+</body>
+
+</html>

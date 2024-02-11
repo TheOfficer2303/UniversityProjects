@@ -1,0 +1,20 @@
+Potrebno je pronaći zgradu (building) koji je najmanje udaljena od Save.
+Prvo je kreiran View koji prikazuje udaljenosti svih zgrada od Save. Budući da postoji jako puno zapisa o zgrada, kreiran je GIST index nad tablicom "buildings".
+Nakon uspješno obavljenog queryja, id zgrade koji je pronađen, iskorišten je u QGIS-u kako bi se prikazala ta zgrada.
+Također, kreiran je View za prikaz Save koja se "izlijeva", a izlijeva se onoliko metara koliko je vratio upit koji je priložen (potrebno je dakle 54.25 metara da se Sava izlije).
+Taj View je prikazan kao layer u QGIS-u, što se vidi na priloženoj slici.
+
+create view sava_buildings_dist as
+select
+  buildings.gid,
+	st_distance(
+        sava.geom, 
+        buildings.geom
+) as dist
+from sava, buildings;
+
+select min(dist) from sava_buildings_dist
+
+create view sava_buffer as
+select row_number() over() as id, st_buffer(sava.geom::geography, 54.25106896336527) as buf
+from sava

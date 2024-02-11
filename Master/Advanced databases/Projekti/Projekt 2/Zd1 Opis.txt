@@ -1,0 +1,50 @@
+Prvo je bilo potrebno u bazu importati podatke o hrvatskoj administraciji, kako je to navedeno u prvom zadatku.
+Nakon uspješnog uvoza, kreiran je View za svaku od regija koristeći sljedeći priloženi kod na dnu (ujednačavanje SRID-ova na 3765 je također provedeno kao u vježbi).
+Nakon kreiranja novog projekta u QGIS-u, povezana je baza podataka GISDB te su dodani novi layeri. Svaki View (odnosno svaka regija) dodana je kao zaseban layer.
+Layerima su dodijeljene različite boje kako bi se bolje raspoznali na karti.
+
+create or replace view regija1 as
+select 
+row_number() over() as id,
+	st_union(array[zupanija1.geom, zupanija2.geom, zupanija2.geom, zupanija3.geom, zupanija4.geom, zupanija5.geom, zupanija6.geom]) as geom
+from hrv_adm1 zupanija1, hrv_adm1 zupanija2, hrv_adm1 zupanija3, hrv_adm1 zupanija4, hrv_adm1 zupanija5, hrv_adm1 zupanija6
+where zupanija1.name_1 = 'Brodsko-Posavska'
+and zupanija2.name_1 = 'Požeško-Slavonska'
+and zupanija3.name_1 = 'Vukovarsko-Srijemska'
+and zupanija4.name_1 = 'Osjecko-Baranjska'
+and zupanija5.name_1 = 'Viroviticko-Podravska'
+and zupanija6.name_1 = 'Bjelovarska-Bilogorska';
+
+create or replace view regija2 as
+select
+	row_number() over() as id,
+	st_union(array[zupanija1.geom, zupanija2.geom, zupanija2.geom, zupanija3.geom, zupanija4.geom, zupanija5.geom, zupanija6.geom, zupanija7.geom]) as geom
+from hrv_adm1 zupanija1, hrv_adm1 zupanija2, hrv_adm1 zupanija3, hrv_adm1 zupanija4, hrv_adm1 zupanija5, hrv_adm1 zupanija6, hrv_adm1 zupanija7
+where zupanija1.name_1 = 'Sisacko-Moslavacka'
+and zupanija2.name_1 = 'Varaždinska'
+and zupanija3.name_1 = 'Krapinsko-Zagorska'
+and zupanija4.name_1 = 'Koprivničko-Križevačka'
+and zupanija5.name_1 = 'Medimurska'
+and zupanija6.name_1 = 'Grad Zagreb'
+and zupanija7.name_1 = 'Zagrebačka';
+
+
+create or replace view regija3 as
+select
+	row_number() over() as id,
+	st_union(array[zupanija1.geom, zupanija2.geom, zupanija2.geom, zupanija3.geom, zupanija4.geom]) as geom
+from hrv_adm1 zupanija1, hrv_adm1 zupanija2, hrv_adm1 zupanija3, hrv_adm1 zupanija4
+where zupanija1.name_1 = 'Karlovacka'
+and zupanija2.name_1 = 'Primorsko-Goranska'
+and zupanija3.name_1 = 'Licko-Senjska'
+and zupanija4.name_1 = 'Istarska';
+
+create or replace view regija4 as
+select
+	row_number() over() as id,
+	st_union(array[zupanija1.geom, zupanija2.geom, zupanija2.geom, zupanija3.geom, zupanija4.geom]) as geom
+from hrv_adm1 zupanija1, hrv_adm1 zupanija2, hrv_adm1 zupanija3, hrv_adm1 zupanija4
+where zupanija1.name_1 = 'Zadarska'
+and zupanija2.name_1 = 'Šibensko-Kninska'
+and zupanija3.name_1 = 'Splitsko-Dalmatinska'
+and zupanija4.name_1 = 'Dubrovacko-Neretvanska';

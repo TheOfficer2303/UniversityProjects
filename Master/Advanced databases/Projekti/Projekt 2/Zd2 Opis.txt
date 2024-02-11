@@ -1,0 +1,13 @@
+Slično kao u prethodnom zadatku, dodan je View koji će odgovarati jednom layeru u QGISU (layer za rijeku Savu).
+Nakon toga je izračunata duljina rijeke Save kroz 2 regije kroz koje prolazi (regija3 i regija4 su zanemarene jer kroz njih Sava ne prolazi).
+Duljina Save kroz regije (redom): 83106.26m, 219956.93m
+
+create or replace view sava as
+SELECT ROW_NUMBER() OVER () AS id, name, ST_Union(waterways.geom) as geom
+FROM waterways
+where lower(name) = 'sava' 
+GROUP BY name
+
+select st_length(st_intersection(r1.geom, s.geom)) as duljina_regija1,
+st_length(st_intersection(r2.geom, s.geom)) as duljina_regija2
+from regija1 r1, regija2 r2, sava s

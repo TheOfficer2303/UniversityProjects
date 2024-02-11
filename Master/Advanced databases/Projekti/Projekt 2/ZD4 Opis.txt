@@ -1,0 +1,18 @@
+Za izračun omjera površine šuma i ukupne površine županije prvo je potrebno napraviti tablicu koja sadrži površine šuma u pojedinoj županiji.
+Da bi se ubrzao proces, kreiran je indeks nad tablicom landuse (atribut geom).
+Kreiranje Viewa kojim spajamo županije i dobivene površine omogućen je unos novog layera u QGIS.
+U odjeljku Properties pritiskom na desni klik na novododani layer promijenjen je stil na "Categorized", "Mode" stila na "Fixed interval" te su na kartici "Histogram" podešene granice intervala.
+Nakon toga je odabrana početna i završna boja te je QGIS obojao intervale (čije veličine je također bilo potrebno postaviti). Time je dobiven prikaz priložen na slici.
+
+create index landuse_idx on "landuse" using gist(geom)
+
+create table forests as
+select name_1, z.geom, sum(st_area(st_Intersection(z.geom, f.geom))) / st_area(z.geom) as area
+from landuse f, hrv_adm1 z
+where f.fclass = 'forest' 
+group by z.name_1, z.geom
+
+create view forest_area as
+select hrv_adm1.name_1, forests.area, hrv_adm1.geom
+from hrv_adm1 natural join forests
+
