@@ -1,0 +1,10 @@
+bundle exec rails migrations:
+bundle exec rails migrations:
+bundle exec rails migrations:
+bundle exec rails migrations:
+
+bundle exec rails migrations:populate_cost_rate_on_booking_items
+bundle exec rails migrations:update_subtasks_to_parent_task_milestone
+bundle exec rails migrations:cleanup_invalid_task_dependencies
+bundle exec rails migrations:recalculate_overheads_for_organization
+bundle exec rails migrations:create_memberships_for_pages_without_memberships

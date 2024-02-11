@@ -1,0 +1,149 @@
+# task1
+## Task1 function
+Golden ratio search:
+Minimum - 3.0000002009329725
+Iterations - 43
+
+Coordinate search:
+Minimum - [3.0000001132580802]
+Iterations - 84
+
+Hooke-Jeeves search:
+Minimum - [3.0]
+Iterations - 54
+
+Simplex search:
+Minimum - [3.0]
+Iterations - 43
+
+## Task1 function
+Golden ratio search:
+Minimum - 2.999999910140044
+Iterations - 46
+
+Coordinate search:
+Minimum - [3.0000000899529753]
+Iterations - 89
+
+Hooke-Jeeves search:
+Minimum - [3.0]
+Iterations - 62
+
+Simplex search:
+Minimum - [3.0]
+Iterations - 63
+
+## Task1 function
+Golden ratio search:
+Minimum - 3.0000002446342737
+Iterations - 48
+
+Coordinate search:
+Minimum - [2.9999998692682093]
+Iterations - 94
+
+Hooke-Jeeves search:
+Minimum - [3.0]
+Iterations - 85
+
+Simplex search:
+Minimum - [3.0]
+Iterations - 123
+
+## Task1 function
+Golden ratio search:
+Minimum - 3.0000001399372023
+Iterations - 53
+
+Coordinate search:
+Minimum - [2.9999998292064314]
+Iterations - 97
+
+Hooke-Jeeves search:
+Minimum - [3.0]
+Iterations - 104
+
+Simplex search:
+Minimum - [3.0]
+Iterations - 223
+
+# task2
+## Function f1
+Coordinate search:
+Minimum - [1.0003063634369205, 1.000612997354658]
+Iterations - 240555
+
+Hooke-Jeeves search:
+Minimum - [0.9999996185302735, 0.9999990463256836]
+Iterations - 396
+
+Simplex search:
+Minimum - [0.29541931152341616, 0.07616233825683594]
+Iterations - 39924
+
+## Function f2
+Coordinate search:
+Minimum - [3.9999997920748185, 2.0000001070610867]
+Iterations - 157
+
+Hooke-Jeeves search:
+Minimum - [3.999999618530273, 1.9999998092651365]
+Iterations - 125
+
+Simplex search:
+Minimum - [4.000390625, 1.9992187500000007]
+Iterations - 74
+
+## Function f3
+Coordinate search:
+Minimum - [-4.846548815778212e-08, 0.9999999515345119, 1.9999999123251082, 3.000000235256421, 3.9999999700466815, 5.0]
+Iterations - 465
+
+Hooke-Jeeves search:
+Minimum - [0.0, 1.0, 2.0, 3.0, 4.0, 5.0]
+Iterations - 304
+
+Simplex search:
+Minimum - [-0.0018809180993676906, 0.9994078873611985, 1.9987102278902267, 2.9994490851797297, 3.997520889173746, 4.998554537546475]
+Iterations - 575
+
+## Function f4
+Coordinate search:
+Minimum - [-1.0999996457649253, 1.0999995065654529]
+Iterations - 154
+
+Hooke-Jeeves search:
+Minimum - [3.0999999999999996, 3.0999999999999996]
+Iterations - 90
+
+Simplex search:
+Minimum - [-4.1297854919664055e-05, -9.04335404717238e-06]
+Iterations - 222
+
++-------------------+----------+----------+----------+----------+
+|                   |   Func 1 |   Func 2 |   Func 3 |   Func 4 |
++===================+==========+==========+==========+==========+
+| Coordinate search |   240555 |      157 |      465 |      154 |
++-------------------+----------+----------+----------+----------+
+| Hooks-Jeeves      |      396 |      125 |      304 |       90 |
++-------------------+----------+----------+----------+----------+
+| Nelder-Mead       |    39924 |       74 |      575 |      222 |
++-------------------+----------+----------+----------+----------+
+
+# task3
+## Function f4
+Hooke-Jeeves search:
+Minimum - [5, 5]
+Iterations - 81
+
+Simplex search:
+Minimum - [-2.1538099645113107e-05, 4.6547531837859424e-05]
+Iterations - 160
+
+# task5
+Nelder-Mead (x0=[-17.72706399  -2.04947503]):
+Minimum - [0.004424230768571928, -0.0003956805415694835]
+Iterations - 176
+f(minimum)=1.974998082399093e-05
+
+Iterations: 1

@@ -1,0 +1,6 @@
+BOARD_HEIGHT = 6
+BOARD_LENGTH = 7
+
+USER_CHAR = "🟢"
+CPU_CHAR = "🔴"
+EMPTY_CHAR = "⚪"

@@ -1,0 +1,21 @@
+#task 1
+
+Function 1 s ograničenjima:
+x0=[-1.9, 2], Minimum: [0.010512212519713987, 0.010518371283031248], Min vrijednost: 0.9899184462735574
+Function 1 bez ograničenja:
+x0=[-1.9, 2], Minimum: [0.9990583533535699, 0.998182473274894], Min vrijednost: 1.3076381513887422e-06
+
+Function 2 s ograničenjima:
+x0=[0.1, 0.3], Minimum: [1.9999983796141085, 2.000758452580522], Min vrijednost: 4.000008782547458
+Function 2 bez ograničenja:
+x0=[0.1, 0.3], Minimum: [3.9995053526466475, 2.0006430781204396], Min vrijednost: 1.8988738801312336e-06
+
+#task 2
+
+Function 1, x0=[-1.9, 2], Minimum u tocki [0.031249618530273526, 0.03125] s vrijednosti 1.030125547758556
+Function 1, x0=[0.2, 0.5], Minimum u tocki [-7.629394531694089e-07, 0.0] s vrijednosti 1.0000015258794883
+Function 2, x0=[0.1, 0.3], Minimum u tocki [1.9874998092651368, 1.9874999999999998] s vrijednosti 4.050782017707861
+
+#task 3
+Function 4, x0=[5.0, 5.0], Minimum u tocki [1.9999980926513672, 1.0000009536743164] s vrijednosti 2.000005722050446
+Function 4, x0=[0.0, 1.0], Minimum u tocki [3.2499990463256836, -0.25] s vrijednosti 0.12499952316375129

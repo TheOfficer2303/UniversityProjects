@@ -1,0 +1,194 @@
+# task4
+Point: (0.5, 0.5)
+Simplex search:
+Minimum - [0.8439698219299316, 0.7107124328613281]
+Iterations - 7997
+Step=1
+
+Simplex search:
+Minimum - [0.8653984069824219, 0.7468528747558594]
+Iterations - 4442
+Step=2
+
+Simplex search:
+Minimum - [0.8970584869384766, 0.804229736328125]
+Iterations - 5527
+Step=3
+
+Simplex search:
+Minimum - [0.8653984069824219, 0.7468528747558594]
+Iterations - 4444
+Step=4
+
+Simplex search:
+Minimum - [0.9373245239257812, 0.87762451171875]
+Iterations - 1943
+Step=5
+
+Simplex search:
+Minimum - [0.8970584869384766, 0.804229736328125]
+Iterations - 5530
+Step=6
+
+Simplex search:
+Minimum - [0.9692535400390625, 0.9391326904296875]
+Iterations - 545
+Step=7
+
+Simplex search:
+Minimum - [0.8653984069824219, 0.7468528747558594]
+Iterations - 4448
+Step=8
+
+Simplex search:
+Minimum - [0.4194793701171875, 0.17791748046875]
+Iterations - 68
+Step=9
+
+Simplex search:
+Minimum - [0.9373245239257812, 0.87762451171875]
+Iterations - 1947
+Step=10
+
+Simplex search:
+Minimum - [0.9774627685546875, 0.9552650451660156]
+Iterations - 544
+Step=11
+
+Simplex search:
+Minimum - [0.8970584869384766, 0.804229736328125]
+Iterations - 5534
+Step=12
+
+Simplex search:
+Minimum - [0.8884232044219971, 0.7902669906616211]
+Iterations - 36486
+Step=13
+
+Simplex search:
+Minimum - [0.9692535400390625, 0.9391326904296875]
+Iterations - 549
+Step=14
+
+Simplex search:
+Minimum - [0.7467646598815918, 0.5535454750061035]
+Iterations - 8718
+Step=15
+
+Simplex search:
+Minimum - [0.8653984069824219, 0.7468528747558594]
+Iterations - 4452
+Step=16
+
+Simplex search:
+Minimum - [0.8657916784286499, 0.7476636171340942]
+Iterations - 3903
+Step=17
+
+Simplex search:
+Minimum - [0.4194793701171875, 0.17791748046875]
+Iterations - 72
+Step=18
+
+Simplex search:
+Minimum - [0.8776473999023438, 0.769073486328125]
+Iterations - 4474
+Step=19
+
+
+
+Point: (20, 20)
+Simplex search:
+Minimum - [5.91558837890625, 34.99818420410156]
+Iterations - 211
+Step=1
+
+Simplex search:
+Minimum - [2.2217559814453125, 4.932380676269531]
+Iterations - 1465341
+Step=2
+
+Simplex search:
+Minimum - [5.915721893310547, 34.9996337890625]
+Iterations - 113
+Step=3
+
+Simplex search:
+Minimum - [2.2217559814453125, 4.932380676269531]
+Iterations - 1465326
+Step=4
+
+Simplex search:
+Minimum - [0.3366728127002716, 0.08608199656009674]
+Iterations - 146
+Step=5
+
+Simplex search:
+Minimum - [-0.7181205749511719, 0.5093662738800049]
+Iterations - 243930
+Step=6
+
+Simplex search:
+Minimum - [4.946189880371094, 24.462878227233887]
+Iterations - 2283494
+Step=7
+
+Simplex search:
+Minimum - [2.2217559814453125, 4.932380676269531]
+Iterations - 1465319
+Step=8
+
+Simplex search:
+Minimum - [-1.625030517578125, 2.6372528076171875]
+Iterations - 1141437
+Step=9
+
+Simplex search:
+Minimum - [-3.7179183959960938, 13.820152282714844]
+Iterations - 673561
+Step=10
+
+Simplex search:
+Minimum - [0.13622466893866658, 0.01734863594174385]
+Iterations - 38149
+Step=11
+
+Simplex search:
+Minimum - [2.3531417846679688, 5.53510856628418]
+Iterations - 407611
+Step=12
+
+Simplex search:
+Minimum - [3.2135162353515625, 10.324608325958252]
+Iterations - 1347975
+Step=13
+
+Simplex search:
+Minimum - [4.946189880371094, 24.462878227233887]
+Iterations - 2283491
+Step=14
+
+Simplex search:
+Minimum - [0.7622313499450684, 0.5815702676773071]
+Iterations - 114
+Step=15
+
+Simplex search:
+Minimum - [2.2217559814453125, 4.932380676269531]
+Iterations - 1465317
+Step=16
+
+Simplex search:
+Minimum - [-2.1036834716796875, 4.422404527664185]
+Iterations - 2060994
+Step=17
+
+Simplex search:
+Minimum - [-1.625030517578125, 2.6372528076171875]
+Iterations - 1141432
+Step=18
+
+Simplex search:
+Minimum - [1.713003158569336, 2.9328498542308807]
+Iterations - 136107
+Step=19

@@ -1,0 +1,71 @@
+# task1
+Uz odredjivanje optimalnog koraka:  [1.9999997462314094, -2.999999619347114]
+Broj izvodjenja: 37
+Broj racunanja gradijenta: 2
+Vrijednost f.je u tocki: 2.0929511726453027e-13
+
+Bez odredjivanja optimalnog koraka:  Divergencija, zapao u točki [0, 0], vrijednost f(x): 13
+
+# task2
+GRADIJENTNI SPUST
+Function 1 [1.000001033426476, 1.0000020708576807]
+Broj izvodjenja: 146881
+Broj racunanja gradijenta: 4081
+Vrijednost f.je u tocki: 1.069573211122074e-12
+
+Function 2 [3.999999648895193, 2.0000000503443944]
+Broj izvodjenja: 973
+Broj racunanja gradijenta: 28
+Vrijednost f.je u tocki: 1.334128177052157e-13
+
+NEWTON-RAPSHON
+Function 1 [0.9999999999996046, 0.9999999999992206]
+Broj izvodjenja: 564
+Broj racunanja gradijenta: 16
+Broj racunanja Hessea: 16
+Vrijednost f.je u tocki: 1.6912587394854742e-25
+
+Function 2 [4.000000000000164, 2.0000000000000715]
+Broj izvodjenja: 74
+Broj racunanja gradijenta: 3
+Broj racunanja Hessea: 3
+Vrijednost f.je u tocki: 4.7446828005422976e-26
+
+
+# task3
+Broj izvodjenja: 3717
+Broj racunanja gradijenta: 105
+Broj racunanja Hessea: 105
+Divergencija, zapao u točki [-1.7231192878204615, 1.0079486229290493], vrijednost f(x): -4.211367271340315
+
+Broj izvodjenja: 101
+Broj racunanja gradijenta: 101
+Broj racunanja Hessea: 101
+Divergencija, zapao u točki [8831727089334.36, 1.2676506002282294e+30], vrijednost f(x): 1.606938045779967e+60
+
+Broj izvodjenja: 39
+Broj racunanja gradijenta: 2
+Broj racunanja Hessea: 2
+[-1.7692922758338994, 2.0]
+
+Broj izvodjenja: 101
+Broj racunanja gradijenta: 101
+Broj racunanja Hessea: 101
+Divergencija, zapao u točki [4248067654508.2085, 2.0], vrijednost f(x): 8.141523998939951e+49
+
+
+# task4
+[0.9999114990234096, 0.9995172275788524]
+Broj izvodjenja: 16
+Broj racunanja gradijenta: 0
+Broj racunanja Hessea: 0
+
+# task5
+Pocetna tocka: [2, 2], rezultat: [0.7861513777574233, 0.6180339887498948]
+
+Pocetna tocka: [-2, 2], rezultat: [-0.7861513777574233, 0.6180339887498948]
+
+
+# task6
+[0.1934357869696504, 0.45917495390303303, 3.1110372689521313]
+

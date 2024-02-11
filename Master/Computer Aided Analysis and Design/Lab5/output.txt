@@ -1,0 +1,52 @@
+# Task 1
+Cumulative error for Euler: 46.98939047399455
+
+Cumulative error for Backward Euler: 45.16399683646192
+
+Cumulative error for Trapezoid: 9.128435144071123
+
+Cumulative error for Runge-Kutta: 9.053065039979398
+
+Cumulative error for PECE: 1805.1425634641887
+
+Cumulative error for PE(CE)^2: 1803.8938075386081
+
+# Task 2
+Cumulative error for Euler: 178.49730891317657
+
+Cumulative error for Backward Euler: 177.90601244552397
+
+Cumulative error for Trapezoid: 178.20030728095037
+
+Cumulative error for Runge-Kutta: 178.19932178355467
+
+Cumulative error for PECE: 313.93887925260054
+
+Cumulative error for PE(CE)^2: 6.070805197235586e+20
+
+# Task 3
+Cumulative error for Euler: 4034.610023969566
+
+Cumulative error for Backward Euler: 4029.613754467816
+
+Cumulative error for Trapezoid: 4032.1021398746298
+
+Cumulative error for Runge-Kutta: 4032.092017229135
+
+Cumulative error for PECE: 9990.984086984354
+
+Cumulative error for PE(CE)^2: 9.096661569439669e+21
+
+# Task 4
+Cumulative error for Euler: 708.8629630627313
+
+Cumulative error for Backward Euler: 703.3527406183846
+
+Cumulative error for Trapezoid: 706.104261741697
+
+Cumulative error for Runge-Kutta: 706.0739474719845
+
+Cumulative error for PECE: 3.5604459386725163e+167
+
+Cumulative error for PE(CE)^2: 9.226618302315574e+20
+
